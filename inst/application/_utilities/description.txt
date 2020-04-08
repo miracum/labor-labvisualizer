@@ -1,0 +1,1 @@
+Put external files here, that need to be integrated in your app (e.g. JSON, ...)

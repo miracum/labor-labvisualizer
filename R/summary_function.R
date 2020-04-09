@@ -2,8 +2,6 @@
 #' 
 #' @param vector A vector containing continuous values.
 #' 
-#' @export
-#' 
 summary_function <- function(vector){
   ret <- data.table(rbind(
     c("Min:", round(min(vector, na.rm = T), 2)),

@@ -13,12 +13,14 @@ shiny::shinyServer(function(input, output, session) {
     # TODO perform db-connection here
     # Read credentials from env variables
     observe({
-        # if (is.null(rv$db_con)) {
-        #     rv$db_con <- db_connection(
-        #         db_name = rv$db_name,
-        #         lib_path = rv$lib_path
-        #     )
-        # }
+        if (is.null(rv$db_con)) {
+            rv$db_con <- DIZutils::db_connection(
+                db_name = rv$db_name,
+                db_type = "oracle",
+                headless = FALSE,
+                lib_path = rv$lib_path
+            )
+        }
         
         # if (is.null(rv$sql)) {
         #     rv$sql <- load_sql(

@@ -29,7 +29,7 @@ my_desc$set_authors(
 # Remove some author fields
 my_desc$del("Maintainer")
 # Set the version
-my_desc$set_version("0.0.1.9001")
+my_desc$set_version("0.0.1.9002")
 # The title of your package
 my_desc$set(Title = paste(
   "labVisualizeR - an interactive web application to",
@@ -90,6 +90,17 @@ usethis::use_package("testthat", type = "Suggests")
 usethis::use_package("processx", type = "Suggests")
 usethis::use_package("lintr", type = "Suggests")
 usethis::use_package("jsonlite", type = "Suggests")
+
+
+# Development packagemytag <- "master"
+
+devtools::install_git(url = "https://gitlab.miracum.org/miracum/dqa/dizutils.git", ref = mytag, upgrade = "always")
+desc::desc_set_remotes(c(
+  paste0(
+    "url::https://gitlab.miracum.org/miracum/dqa/dizutils/-/archive/", mytag, "/dizutils-", mytag, ".zip")
+),
+file = usethis::proj_get())
+
 
 
 # buildignore and gitignore

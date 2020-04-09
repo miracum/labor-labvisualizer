@@ -3,6 +3,7 @@
 #' @inheritParams launch_app
 #' 
 #' @export
+#'
 load_sql <- function(db_name, utils_path) {
   # load json with sql-queries
   sql <- jsonlite::fromJSON(

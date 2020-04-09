@@ -4,8 +4,6 @@
 #' 
 #' @inheritParams update_sliders 
 #'
-#' @export
-#'
 # reset_min_max
 reset_min_max <- function(db_got_num, db_data_subset){
   

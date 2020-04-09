@@ -6,8 +6,6 @@
 #' @inheritParams module_visualize_server 
 #' @inheritParams reset_min_max 
 #'
-#' @export
-#'
 # reset
 reset <- function(session, db_got_num, db_got_cat, db_data) {
   

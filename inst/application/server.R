@@ -5,7 +5,7 @@ shiny::shinyServer(function(input, output, session) {
         utils_path = DIZutils::clean_path_name(utils_path),
         lib_path = DIZutils::clean_path_name(lib_path),
         headless = FALSE,
-        gender_present = "ALL",
+        gender_present = NULL,
         outlier_default = FALSE,
         db_got_num = FALSE,
         db_got_cat = FALSE,
@@ -50,7 +50,7 @@ shiny::shinyServer(function(input, output, session) {
 
     observeEvent(input$reset, {
         if (!is.null(rv$db_data)) {
-            rv$gender_present <- "ALL"
+            rv$gender_present <- NULL
             if (abs(
                 e1071::skewness(
                     rv$db_data[, get("VALUE_NUM")], na.rm = T
@@ -60,12 +60,41 @@ shiny::shinyServer(function(input, output, session) {
             } else {
                 rv$outlier_default <- FALSE
             }
+            rv$db_data_subset <- NULL
+            rv$db_data_subset_present <- NULL
+            rv$min <- NULL
+            rv$min_age <- NULL
+            rv$max <- NULL
+            rv$max_age <- NULL
+            rv$rendered_age_slider <- NULL
+            rv$rendered_range_slider <- NULL
+            rv$gender_present <- "ALL"
         }
     })
 
     # Custom "Modal-Dismiss" Button
     observeEvent(input$dismiss_and_reset, {
-        shinyjs::click("reset")
+        rv$check_for_reset <- NULL
+        if (!is.null(rv$db_data)) {
+            if (abs(
+                e1071::skewness(
+                    rv$db_data[, get("VALUE_NUM")], na.rm = T
+                )
+            ) > 30) {
+                rv$outlier_default <- TRUE
+            } else {
+                rv$outlier_default <- FALSE
+            }
+            rv$db_data_subset <- NULL
+            rv$db_data_subset_present <- NULL
+            rv$min <- NULL
+            rv$min_age <- NULL
+            rv$max <- NULL
+            rv$max_age <- NULL
+            rv$rendered_age_slider <- NULL
+            rv$rendered_range_slider <- NULL
+            rv$gender_present <- "ALL"
+        }
         removeModal()
     })
 
@@ -284,7 +313,7 @@ shiny::shinyServer(function(input, output, session) {
 
             updateSliderInput(
                 session,
-                "range_slider",
+                inputId = "range_slider",
                 value = c(rv$min, rv$max)
             )
         }
@@ -301,7 +330,7 @@ shiny::shinyServer(function(input, output, session) {
         # update ageSlider to min/max
         updateSliderInput(
             session,
-            "age_slider",
+            inputId = "age_slider",
             value = c(rv$min_age, rv$max_age)
         )
     })
@@ -325,6 +354,7 @@ shiny::shinyServer(function(input, output, session) {
                 rv$x <- rv$db_data_subset_present[
                     , c("VALUE_NUM", "SEX"), with = FALSE
                 ]
+                rv$check_for_reset <- TRUE
             }
         }
     })
@@ -339,7 +369,41 @@ shiny::shinyServer(function(input, output, session) {
                         get("AGE") >= input$ageSlider[1] &
                             get("AGE") <= input$ageSlider[2],
                     ]
+                rv$check_for_reset <- TRUE
             }
+        }
+    })
+
+    observe({
+        req(rv$check_for_reset)
+
+        # check data populating the age slider first
+        if (rv$db_data_subset_present[, .N] < 5) {
+            check_error <- TRUE
+        } else {
+            check_error <- FALSE
+        }
+
+        # if data is continuous, check also for x
+        if (isTRUE(rv$db_got_num)) {
+            if (rv$x[, .N] < 5) {
+                check_error <- TRUE
+            } else {
+                check_error <- FALSE
+            }
+        }
+
+        if (isTRUE(check_error)) {
+            showModal(modalDialog(
+                paste(
+                    "Found too few data points"
+                ),
+                title = "Too few data points",
+                footer = actionButton("dismiss_and_reset", "OK")
+            ))
+        } else if (isFALSE(check_error)) {
+            rv$check_for_reset <- NULL
+            rv$render_plots <- TRUE
         }
     })
     ### END: observe slider stuff
@@ -352,7 +416,7 @@ shiny::shinyServer(function(input, output, session) {
         if (input$rangeSlider[1] >= input$rangeSlider[2]) {
             updateSliderInput(
                 session,
-                "rangeSlider",
+                inputId = "range_slider",
                 value = c(input$rangeSlider[1],
                           input$rangeSlider[2] + 1))
         }
@@ -382,7 +446,7 @@ shiny::shinyServer(function(input, output, session) {
         if (input$ageSlider[1] >= input$ageSlider[2]) {
             updateSliderInput(
                 session,
-                "ageSlider",
+                inputId = "age_slider",
                 value = c(input$ageSlider[1], input$ageSlider[2] + 1)
             )
         }

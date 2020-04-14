@@ -167,6 +167,7 @@ module_visualize_server <- function(input,
           AGE = as.integer(as.character(get("AGE"))),
           SEX = as.character(get("SEX"))
         )]
+        rv$gender_present <- "ALL"
         # save another copy in rv$db_data_subset (on first call, this is
         # always the whole dataset)
         rv$db_data_subset <- rv$db_data
@@ -278,76 +279,75 @@ module_visualize_server <- function(input,
   # render plots
   observe({
     req(rv$x)
-    # render histogram
-    output$p1 <- renderPlot({
-      # calculate bins here:
-      # get histinfo here as reactive value, to adjust breaks by our
-      # radiobuttons and be able to update plot
-      tryCatch({
-        rv$histinfo <- graphics::hist(
-          rv$x[, get("VALUE_NUM")],
-          breaks = input$hist_bins
-        )
-      }, error = function(e) {
-        msg <- paste(
-          "Error creating bins: using Sturges algorithm."
-        )
-        DIZutils::feedback(
-          print_this = msg,
-          type = "Error",
-          logjs = TRUE,
-          headless = rv$headless
-        )
-        rv$histinfo <- graphics::hist(
-          rv$x[, get("VALUE_NUM")],
-          breaks = "Sturges"
-        )
+    if (isTRUE(rv$render_plots)) {
+      # render histogram
+      output$p1 <- renderPlot({
+        # calculate bins here:
+        # get histinfo here as reactive value, to adjust breaks by our
+        # radiobuttons and be able to update plot
+        tryCatch({
+          rv$histinfo <- graphics::hist(
+            rv$x[, get("VALUE_NUM")],
+            breaks = input$hist_bins
+          )
+        }, error = function(e) {
+          msg <- paste(
+            "Error creating bins: using Sturges algorithm."
+          )
+          showModal(modalDialog(
+            paste(
+              "Found too few data points"
+            ),
+            title = "Too few data points",
+            footer = actionButton("dismiss_and_reset", "OK")
+          ))
+        })
+
+        ggplot2::ggplot(
+          data = rv$x,
+          ggplot2::aes_string(x = "VALUE_NUM")
+        ) +
+          ggplot2::geom_histogram(
+            ggplot2::aes_string(y = "..density.."),
+            color = "darkgray",
+            fill = "white",
+            breaks = rv$histinfo$breaks
+          ) +
+          ggplot2::geom_density() +
+          ggplot2::labs(
+            title = paste(
+              "Histogram:",
+              rv$db_metadata[, get("ANA_NAME")]
+            ),
+            x = rv$unitdisp
+          ) +
+          ggplot2::theme_minimal() +
+          ggplot2::scale_x_continuous()
       })
 
-      ggplot2::ggplot(
-        data = rv$x,
-        ggplot2::aes_string(x = "VALUE_NUM")
-      ) +
-        ggplot2::geom_histogram(
-          ggplot2::aes_string(y = "..density.."),
-          color = "darkgray",
-          fill = "white",
-          breaks = rv$histinfo$breaks
+      # render violin plot
+      output$p2 <- renderPlot({
+        ggplot2::ggplot(
+          data = rv$x,
+          ggplot2::aes_string(x = "1",
+                              y = "VALUE_NUM")
         ) +
-        ggplot2::geom_density() +
-        ggplot2::labs(
-          title = paste(
-            "Histogram:",
-            rv$db_metadata[, get("ANA_NAME")]
-          ),
-          x = rv$unitdisp
-        ) +
-        ggplot2::theme_minimal() +
-        ggplot2::scale_x_continuous()
-    })
-
-    # render violin plot
-    output$p2 <- renderPlot({
-      ggplot2::ggplot(
-        data = rv$x,
-        ggplot2::aes_string(x = "1",
-                            y = "VALUE_NUM")
-      ) +
-        ggplot2::geom_violin() +
-        ggplot2::geom_boxplot(width = 0.1) +
-        ggplot2::labs(
-          title = paste(
-            "Violin-Plot:",
-            rv$db_metadata[, get("ANA_NAME")]
-          ),
-          x = " ",
-          y = rv$unitdisp
-        ) +
-        ggplot2::theme_minimal() +
-        ggplot2::theme(axis.text.y = ggplot2::element_blank(),
-                       axis.ticks.y = ggplot2::element_blank()) +
-        ggplot2::coord_flip()
-    })
+          ggplot2::geom_violin() +
+          ggplot2::geom_boxplot(width = 0.1) +
+          ggplot2::labs(
+            title = paste(
+              "Violin-Plot:",
+              rv$db_metadata[, get("ANA_NAME")]
+            ),
+            x = " ",
+            y = rv$unitdisp
+          ) +
+          ggplot2::theme_minimal() +
+          ggplot2::theme(axis.text.y = ggplot2::element_blank(),
+                         axis.ticks.y = ggplot2::element_blank()) +
+          ggplot2::coord_flip()
+      })
+    }
   })
 }
 

@@ -156,6 +156,7 @@ module_visualize_server <- function(input,
           title = "Less than 5 data points",
           footer = modalButton("OK")
         ))
+        rv$error <- TRUE
       } else {
 
         # save original data in rv$db_data (to be able to create gender

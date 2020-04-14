@@ -7,7 +7,7 @@
 load_sql <- function(db_name, utils_path) {
   # load json with sql-queries
   sql <- jsonlite::fromJSON(
-    txt = paste0(utils_path, "/SQL/", db_name, "_sql.JSON")
+    txt = paste0(utils_path, "/SQL/", toupper(db_name), "_sql.JSON")
   )
   return(sql)
 }

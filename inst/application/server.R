@@ -2,8 +2,8 @@ shiny::shinyServer(function(input, output, session) {
     # define reactive values here
     rv <- shiny::reactiveValues(
         db_name = db_name,
-        utils_path = utils_path,
-        lib_path = lib_path
+        utils_path = DIZutils::clean_path_name(utils_path),
+        lib_path = DIZutils::clean_path_name(lib_path)
     )
 
     input_reactive <- reactive({

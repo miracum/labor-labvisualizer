@@ -9,6 +9,7 @@
 #'
 #' @import shiny shinydashboard
 #' @importFrom data.table .N ":="
+#' @importFrom magrittr "%>%"
 #'
 #' @export
 #'
@@ -22,27 +23,23 @@ launch_app <- function(
   lib_path
 ) {
 
-  global_env_hack <- function(key,
-                              val,
-                              pos) {
-    assign(
-      key,
-      val,
-      envir = as.environment(pos)
-    )
-  }
+  DIZutils::global_env_hack(
+    "utils_path",
+    utils_path,
+    1L
+  )
 
-  global_env_hack("utils_path",
-                  utils_path,
-                  1L)
+  DIZutils::global_env_hack(
+    "lib_path",
+    lib_path,
+    1L
+  )
 
-  global_env_hack("lib_path",
-                  lib_path,
-                  1L)
-  
-  global_env_hack("db_name",
-                  db_name,
-                  1L)
+  DIZutils::global_env_hack(
+    "db_name",
+    db_name,
+    1L
+  )
 
   options(shiny.port = port)
   shiny::shinyAppDir(

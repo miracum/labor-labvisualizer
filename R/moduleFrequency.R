@@ -15,6 +15,57 @@ module_frequency_server <- function(input,
                                     session,
                                     rv,
                                     input_re) {
+
+  observe({
+    req(rv$db_data_subset_present)
+    if (!is.null(rv$x) && isTRUE(rv$db_got_num)) {
+      # generate Table with frequency counts of VALUE_NUM
+      # Freq-Panel
+      output$freq_table <- DT::renderDataTable({
+        if (rv$db_data_subset_present[
+          , nlevels(factor(get("VALUE_NUM")))
+        ] > 20) {
+          dat <-
+            rv$db_data_subset_present[, .N, by = c("VALUE_NUM", "VALUE_TEXT")
+            ][
+              order(get("N"), decreasing = T)
+            ][
+              1:20,
+            ][
+              , "% Valid" := round( # nolint
+                (get("N") /
+                   nrow(rv$db_data_subset_present)
+                ) * 100, 2)]
+        } else {
+          dat <-
+            rv$db_data_subset_present[, .N, by = c("VALUE_NUM", "VALUE_TEXT")
+            ][
+              order(get("N"), decreasing = T)
+            ][
+              , "% Valid" := round( # nolint
+                (get("N") / nrow(rv$db_data_subset_present)
+                ) * 100, 2)]
+        }
+        DT::datatable(dat, options = list(scrollX = TRUE, pageLength = 20)) %>%
+          DT::formatRound(columns = 1, digits = 3)
+      })
+
+      # if we have categorical data
+    } else if (isTRUE(rv$db_got_cat)) {
+      # generate Table with frequency counts of VALUE_TEXT
+      # Freq-Panel
+      output$freq_table <- DT::renderDataTable({
+        dat <- rv$db_data_subset_present[, .N, by = "VALUE_TEXT"
+        ][
+          order(get("N"), decreasing = T)
+        ][
+          , "% Valid" := round( # nolint
+            (get("N") / nrow(rv$db_data_subset_present)
+            ) * 100, 2)]
+        DT::datatable(dat, options = list(scrollX = TRUE, pageLength = 20))
+      })
+    }
+  })
 }
 
 
@@ -27,9 +78,11 @@ module_frequency_server <- function(input,
 # module_frequency_ui
 module_frequency_ui <- function(id) {
   ns <- NS(id)
-  
+
   tagList(# first row
     fluidRow(
+      DT::dataTableOutput(ns("freq_table")),
+      tags$hr()
     )
   )
 }

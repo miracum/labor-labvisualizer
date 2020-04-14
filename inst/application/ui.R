@@ -1,41 +1,28 @@
 shiny::shinyUI(
   shiny::tagList(
-    
+
     shiny::fluidPage(
       shiny::titlePanel("labVisualizeR"),
-      
+
       shiny::sidebarLayout(
         sidebarPanel(
           uiOutput("headline"),
-          
+
           uiOutput("range_slider"),
-          
+
           uiOutput("age_slider"),
-          
+
           uiOutput("sex_radio"),
-          
+
           uiOutput("summary"),
-          
-          uiOutput("display_N"),
-          
-          shiny::div(
-            class = "sidebar-menu",
-            style = paste0("position:fixed; bottom:0; ",
-                           "left:0; white-space: normal;",
-                           "text-align:left;",
-                           "padding: 9.5px 9.5px 9.5px 9.5px;",
-                           "margin: 6px 10px 6px 10px;",
-                           "box-sizing:border-box;",
-                           "heigth: auto; width: 230px;"),
-            shiny::HTML(
-              paste0(
-                "Version: ", utils::packageVersion("labVisualizeR"),
-                "<br/><br/>\u00A9 Universitätsklinikum Erlangen<br/>"
-              )
-            )),
+
+          uiOutput("display_n"),
+
+          htmlOutput("version"),
+
           width = 3
         ),
-        
+
         shiny::mainPanel(
           shiny::tabsetPanel(
             id = "tabs",

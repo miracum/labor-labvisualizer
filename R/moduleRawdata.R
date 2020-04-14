@@ -15,6 +15,18 @@ module_rawdata_server <- function(input,
                                   session,
                                   rv,
                                   input_re) {
+  # render table of raw data for debugging
+  observe({
+    # wait for db_data
+    req(rv$db_data)
+
+    # renter table tab
+    output$rawdata_table <- DT::renderDataTable({
+      DT::datatable(rv$db_data,
+                    options = list(scrollX = TRUE, pageLength = 20)) %>%
+        DT::formatRound(columns = 1, digits = 3)
+    })
+  })
 }
 
 
@@ -27,9 +39,11 @@ module_rawdata_server <- function(input,
 # module_rawdata_ui
 module_rawdata_ui <- function(id) {
   ns <- NS(id)
-  
+
   tagList(# first row
     fluidRow(
+      DT::dataTableOutput(ns("rawdata_table")),
+      tags$hr()
     )
   )
 }

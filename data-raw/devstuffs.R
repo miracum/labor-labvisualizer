@@ -29,7 +29,7 @@ my_desc$set_authors(
 # Remove some author fields
 my_desc$del("Maintainer")
 # Set the version
-my_desc$set_version("0.0.1.9002")
+my_desc$set_version("0.0.1.9003")
 # The title of your package
 my_desc$set(Title = paste(
   "labVisualizeR - an interactive web application to",
@@ -37,7 +37,7 @@ my_desc$set(Title = paste(
 ))
 # The description of your package
 my_desc$set(Description = paste(
-  "The package includes a shiny web application that aims to", 
+  "The package includes a shiny web application that aims to",
   "interactively visualize measurements from SQL databases.",
   "It has primarily been developed to visualize laboratory mesaurements,",
   "but can in principal be used to visualize any continuous and discrete",
@@ -74,9 +74,9 @@ usethis::use_gpl3_license(name = "Universitätsklinikum Erlangen")
 
 # Imports
 usethis::use_package("data.table", type="Imports")
+usethis::use_package("utils", type="Imports")
 usethis::use_package("shiny", type="Imports")
 usethis::use_package("shinydashboard", type="Imports")
-usethis::use_package("RJDBC", type="Imports")
 usethis::use_package("shinyjs", type="Imports")
 usethis::use_package("DBI", type = "Imports")
 usethis::use_package("stats", type = "Imports")
@@ -84,6 +84,7 @@ usethis::use_package("graphics", type = "Imports")
 usethis::use_package("DT", type = "Imports")
 usethis::use_package("e1071", type = "Imports")
 usethis::use_package("ggplot2", type = "Imports")
+usethis::use_package("magrittr", type = "Imports")
 
 # Suggests
 usethis::use_package("testthat", type = "Suggests")
@@ -92,7 +93,8 @@ usethis::use_package("lintr", type = "Suggests")
 usethis::use_package("jsonlite", type = "Suggests")
 
 
-# Development packagemytag <- "master"
+# Development package
+mytag <- "master"
 
 devtools::install_git(url = "https://gitlab.miracum.org/miracum/dqa/dizutils.git", ref = mytag, upgrade = "always")
 desc::desc_set_remotes(c(

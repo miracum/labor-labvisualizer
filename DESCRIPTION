@@ -1,7 +1,7 @@
 Package: labVisualizeR
 Title: labVisualizeR - an interactive web application to
     visualize measurements from SQL databases
-Version: 0.0.1.9002
+Version: 0.0.1.9003
 Authors@R: 
     c(person(given = "Lorenz A.",
              family = "Kapsner",
@@ -26,17 +26,20 @@ Imports:
     e1071,
     ggplot2,
     graphics,
-    RJDBC,
+    magrittr,
     shiny,
     shinydashboard,
     shinyjs,
-    stats
+    stats,
+    utils
 Suggests: 
     jsonlite,
     lintr,
     processx,
     testthat
-Date/Publication: 2020-04-09 14:36:51 UTC
+Remotes: 
+    url::https://gitlab.miracum.org/miracum/dqa/dizutils/-/archive/master/dizutils-master.zip
+Date/Publication: 2020-04-14 12:24:17 UTC
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.0

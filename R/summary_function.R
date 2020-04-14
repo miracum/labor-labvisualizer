@@ -1,9 +1,11 @@
 #' @title summary_function function
-#' 
+#'
 #' @param vector A vector containing continuous values.
-#' 
-summary_function <- function(vector){
-  ret <- data.table(rbind(
+#'
+#' @export
+#'
+summary_function <- function(vector) {
+  ret <- data.table::data.table(rbind(
     c("Min:", round(min(vector, na.rm = T), 2)),
     c("Mean:", round(mean(vector, na.rm = T), 2)),
     c("Median:", round(stats::median(vector, na.rm = T), 2)),

@@ -2,7 +2,7 @@ shiny::shinyUI(
   shiny::tagList(
 
     shiny::fluidPage(
-      shiny::titlePanel("labVisualizeR"),
+      shiny::titlePanel(labviz_title),
 
       shiny::sidebarLayout(
         sidebarPanel(

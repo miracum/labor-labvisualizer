@@ -96,10 +96,10 @@ usethis::use_package("jsonlite", type = "Suggests")
 # Development package
 mytag <- "master"
 
-devtools::install_git(url = "https://gitlab.miracum.org/miracum/dqa/dizutils.git", ref = mytag, upgrade = "always")
+devtools::install_git(url = "https://gitlab.miracum.org/miracum/misc/dizutils.git", ref = mytag, upgrade = "always")
 desc::desc_set_remotes(c(
   paste0(
-    "url::https://gitlab.miracum.org/miracum/dqa/dizutils/-/archive/", mytag, "/dizutils-", mytag, ".zip")
+    "url::https://gitlab.miracum.org/miracum/misc/dizutils/-/archive/", mytag, "/dizutils-", mytag, ".zip")
 ),
 file = usethis::proj_get())
 

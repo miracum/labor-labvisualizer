@@ -49,8 +49,8 @@ shiny::shinyServer(function(input, output, session) {
     })
 
     observeEvent(input$reset, {
+        rv$check_for_reset <- NULL
         if (!is.null(rv$db_data)) {
-            rv$gender_present <- NULL
             if (abs(
                 e1071::skewness(
                     rv$db_data[, get("VALUE_NUM")], na.rm = T
@@ -377,13 +377,6 @@ shiny::shinyServer(function(input, output, session) {
     observe({
         req(rv$check_for_reset)
 
-        # check data populating the age slider first
-        if (rv$db_data_subset_present[, .N] < 5) {
-            check_error <- TRUE
-        } else {
-            check_error <- FALSE
-        }
-
         # if data is continuous, check also for x
         if (isTRUE(rv$db_got_num)) {
             if (rv$x[, .N] < 5) {
@@ -391,9 +384,24 @@ shiny::shinyServer(function(input, output, session) {
             } else {
                 check_error <- FALSE
             }
+        } else if (isTRUE(rv$db_got_cat)) {
+            # check data populating the age slider first
+            if (rv$db_data_subset_present[, .N] < 5) {
+                check_error <- TRUE
+            } else {
+                check_error <- FALSE
+            }
         }
 
         if (isTRUE(check_error)) {
+            rv$db_data_subset <- NULL
+            rv$db_data_subset_present <- NULL
+            rv$min <- NULL
+            rv$min_age <- NULL
+            rv$max <- NULL
+            rv$max_age <- NULL
+            rv$rendered_age_slider <- NULL
+            rv$rendered_range_slider <- NULL
             showModal(modalDialog(
                 paste(
                     "Found too few data points"

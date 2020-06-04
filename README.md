@@ -1,6 +1,7 @@
 # labVisualizeR (!!! under development !!!)
 
 <!-- badges: start -->
+[![R CMD Check via {tic}](https://github.com/miracum/labor-labvisualizer/workflows/R%20CMD%20Check%20via%20{tic}/badge.svg?branch=master)](https://github.com/miracum/labor-labvisualizer/actions)
 [![pipeline status](https://gitlab.miracum.org/miracum/labor/labvisualizer/badges/master/pipeline.svg)](https://gitlab.miracum.org/miracum/labor/labvisualizer/commits/master)
 [![coverage report](https://gitlab.miracum.org/miracum/labor/labvisualizer/badges/master/coverage.svg)](https://gitlab.miracum.org/miracum/labor/labvisualizer/commits/master)
 <!-- badges: end -->

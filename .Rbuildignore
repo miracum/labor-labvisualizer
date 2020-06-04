@@ -9,3 +9,6 @@
 ^\.vscode$
 ^\.lintr$
 ^docker_deployment$
+^\.ccache$
+^\.github$
+^tic\.R$

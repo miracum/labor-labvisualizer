@@ -86,12 +86,9 @@ module_visualize_server <- function(input,
           )
           incProgress(0.5, detail = "... working hard to get metadata ...")
           # get metadata
-          rv$db_metadata <- data.table::data.table(
-            DBI::dbGetQuery(
-              conn = rv$db_con,
-              statement = sql_meta
-            ),
-            stringsAsFactors = F
+          rv$db_metadata <- DIZutils::query_database(
+            db_con = rv$db_con,
+            sql_statement = sql_meta
           )
           # set unit
           rv$unitdisp <- as.character(rv$db_metadata[, get("ANA_UNIT")])
@@ -126,9 +123,9 @@ module_visualize_server <- function(input,
           )
           incProgress(0.5, detail = "... working hard to get data ...")
           # query database and save result in temporary object
-          rv$tmp_data <- data.table::data.table(
-            DBI::dbGetQuery(rv$db_con, sql),
-            stringsAsFactors = TRUE
+          rv$tmp_data <- DIZutils::query_database(
+            db_con = rv$db_con,
+            sql_statement = sql
           )
           setProgress(1, detail = "Data loaded!")
         })

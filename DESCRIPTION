@@ -1,7 +1,7 @@
 Package: labVisualizeR
 Title: labVisualizeR - an interactive web application to
     visualize measurements from SQL databases
-Version: 0.0.2.9001
+Version: 0.0.2.9002
 Authors@R: 
     c(person(given = "Lorenz A.",
              family = "Kapsner",
@@ -12,16 +12,18 @@ Authors@R:
              family = "Zierk",
              role = "ctb"),
       person(given = "MIRACUM - Medical Informatics in Research and Care in University Medicine",
-             role = "fnd"))
+             role = "fnd"),
+      person(given = "Universitätsklinikum Erlangen",
+             role = "cph"))
 Description: The R tool 'labVisualizeR' provides a shiny web
     application that aims to interactively visualize measurements from SQL
     databases. It has primarily been developed to visualize laboratory
     mesaurements, but can in principal be used to visualize any continuous
     and discrete values.
 License: GPL-3
-URL: https://gitlab.miracum.org/ume/labor/lab-visualizer
+URL: https://github.com/miracum/labor-labvisualizer
 BugReports: 
-    https://gitlab.miracum.org/ume/labor/lab-visualizer/issues
+    https://github.com/miracum/labor-labvisualizer/issues
 Imports: 
     data.table,
     DBI,
@@ -41,7 +43,7 @@ Suggests:
     lintr,
     processx,
     testthat
-Date/Publication: 2020-06-04 12:45:51 UTC
+Date/Publication: 2020-06-05 09:35:23 UTC
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.0

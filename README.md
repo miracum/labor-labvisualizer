@@ -4,6 +4,7 @@
 [![R CMD Check via {tic}](https://github.com/miracum/labor-labvisualizer/workflows/R%20CMD%20Check%20via%20{tic}/badge.svg?branch=master)](https://github.com/miracum/labor-labvisualizer/actions)
 [![linting](https://github.com/miracum/labor-labvisualizer/workflows/lint/badge.svg?branch=master)](https://github.com/miracum/labor-labvisualizer/actions)
 [![test-coverage](https://github.com/miracum/labor-labvisualizer/workflows/test-coverage/badge.svg?branch=master)](https://github.com/miracum/labor-labvisualizer/actions)
+[![codecov](https://codecov.io/gh/miracum/labor-labvisualizer/branch/master/graph/badge.svg)](https://codecov.io/gh/miracum/labor-labvisualizer)
 [![pipeline status](https://gitlab.miracum.org/miracum/labor/labvisualizer/badges/master/pipeline.svg)](https://gitlab.miracum.org/miracum/labor/labvisualizer/commits/master)
 [![coverage report](https://gitlab.miracum.org/miracum/labor/labvisualizer/badges/master/coverage.svg)](https://gitlab.miracum.org/miracum/labor/labvisualizer/commits/master)
 <!-- badges: end -->
@@ -19,10 +20,9 @@ Currently supported databases:
 
 You can install *labVisualizeR* with the following commands in R:
 
-``` r
-options('repos' = 'https://ftp.fau.de/cran/')
+```r
 install.packages("devtools")
-devtools::install_git("https://gitlab.miracum.org/miracum/labor/labvisualizer.git")
+devtools::install_github("miracum/labor-labvisualizer")
 ```
 
 # Configuration 

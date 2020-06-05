@@ -16,6 +16,10 @@ person3 <- person(
   "MIRACUM - Medical Informatics in Research and Care in University Medicine",
   role = c("fnd")
 )
+person4 <- person(
+  "Universitätsklinikum Erlangen",
+  role = "cph"
+)
 
 # remove existing description object
 unlink("DESCRIPTION")
@@ -28,14 +32,15 @@ my_desc$set_authors(
   c(
     person1,
     person2,
-    person3
+    person3,
+    person4
   )
 ) #,
 #  person("Name2", "Surname2", email = "mail@2", role = 'aut')))
 # Remove some author fields
 my_desc$del("Maintainer")
 # Set the version
-my_desc$set_version("0.0.2.9001")
+my_desc$set_version("0.0.2.9002")
 # The title of your package
 my_desc$set(Title = paste(
   "labVisualizeR - an interactive web application to",
@@ -52,9 +57,9 @@ my_desc$set(Description = paste(
 # The description of your package
 my_desc$set("Date/Publication" = paste(as.character(Sys.time()), "UTC"))
 # The urls
-my_desc$set("URL", "https://gitlab.miracum.org/ume/labor/lab-visualizer")
+my_desc$set("URL", "https://github.com/miracum/labor-labvisualizer")
 my_desc$set("BugReports",
-            "https://gitlab.miracum.org/ume/labor/lab-visualizer/issues")
+            "https://github.com/miracum/labor-labvisualizer/issues")
 # License
 my_desc$set("License", "GPL-3")
 # Save everyting

@@ -96,7 +96,16 @@ usethis::use_package("DT", type = "Imports")
 usethis::use_package("e1071", type = "Imports")
 usethis::use_package("ggplot2", type = "Imports")
 usethis::use_package("magrittr", type = "Imports")
-usethis::use_package("DIZutils", type = "Imports")
+#usethis::use_package("DIZutils", type = "Imports")
+
+# we need the development package of DIZutils due to yet old function logic on v0.0.3 CRAN package
+# dev packages
+tag <- "development"
+devtools::install_github(repo = "miracum/misc-dizutils", ref = tag, upgrade = "always")
+# https://cran.r-project.org/web/packages/devtools/vignettes/dependencies.html
+desc::desc_set_remotes(paste0("github::miracum/misc-dizutils@", tag), file = usethis::proj_get())
+
+
 
 # Suggests
 usethis::use_package("testthat", type = "Suggests")

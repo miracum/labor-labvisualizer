@@ -8,8 +8,17 @@ person1 <- person(
   role = c('cre', 'aut')
 )
 person2 <- person(
+  given = "Jakob",
+  family = "Zierk",
+  role = c('ctb')
+)
+person3 <- person(
   "MIRACUM - Medical Informatics in Research and Care in University Medicine",
   role = c("fnd")
+)
+person4 <- person(
+  "Universitätsklinikum Erlangen",
+  role = "cph"
 )
 
 # remove existing description object
@@ -22,14 +31,16 @@ my_desc$set("Package", packagename)
 my_desc$set_authors(
   c(
     person1,
-    person2
+    person2,
+    person3,
+    person4
   )
 ) #,
 #  person("Name2", "Surname2", email = "mail@2", role = 'aut')))
 # Remove some author fields
 my_desc$del("Maintainer")
 # Set the version
-my_desc$set_version("0.0.2")
+my_desc$set_version("0.0.3")
 # The title of your package
 my_desc$set(Title = paste(
   "labVisualizeR - an interactive web application to",
@@ -37,7 +48,7 @@ my_desc$set(Title = paste(
 ))
 # The description of your package
 my_desc$set(Description = paste(
-  "The package includes a shiny web application that aims to",
+  "The R tool 'labVisualizeR' provides a shiny web application that aims to",
   "interactively visualize measurements from SQL databases.",
   "It has primarily been developed to visualize laboratory mesaurements,",
   "but can in principal be used to visualize any continuous and discrete",
@@ -46,9 +57,9 @@ my_desc$set(Description = paste(
 # The description of your package
 my_desc$set("Date/Publication" = paste(as.character(Sys.time()), "UTC"))
 # The urls
-my_desc$set("URL", "https://gitlab.miracum.org/ume/labor/lab-visualizer")
+my_desc$set("URL", "https://github.com/miracum/labor-labvisualizer")
 my_desc$set("BugReports",
-            "https://gitlab.miracum.org/ume/labor/lab-visualizer/issues")
+            "https://github.com/miracum/labor-labvisualizer/issues")
 # License
 my_desc$set("License", "GPL-3")
 # Save everyting
@@ -85,25 +96,13 @@ usethis::use_package("DT", type = "Imports")
 usethis::use_package("e1071", type = "Imports")
 usethis::use_package("ggplot2", type = "Imports")
 usethis::use_package("magrittr", type = "Imports")
+usethis::use_package("DIZutils", type = "Imports")
 
 # Suggests
 usethis::use_package("testthat", type = "Suggests")
 usethis::use_package("processx", type = "Suggests")
 usethis::use_package("lintr", type = "Suggests")
 usethis::use_package("jsonlite", type = "Suggests")
-
-
-# Development package
-mytag <- "master"
-
-devtools::install_git(url = "https://gitlab.miracum.org/miracum/misc/dizutils.git", ref = mytag, upgrade = "always")
-desc::desc_set_remotes(c(
-  paste0(
-    "url::https://gitlab.miracum.org/miracum/misc/dizutils/-/archive/", mytag, "/dizutils-", mytag, ".zip")
-),
-file = usethis::proj_get())
-
-
 
 # buildignore and gitignore
 usethis::use_build_ignore("LICENSE.md")

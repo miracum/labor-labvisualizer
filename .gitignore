@@ -25,3 +25,6 @@ inst/application/_settings/
 !/docker_deployment
 /.vscode
 !/.lintr
+docs/
+!/tic.R
+!/.github/

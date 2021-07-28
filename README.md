@@ -21,8 +21,8 @@ Currently supported databases:
 You can install *labVisualizeR* with the following commands in R:
 
 ```r
-install.packages("devtools")
-devtools::install_github("miracum/labor-labvisualizer")
+install.packages("remotes")
+remotes::install_github("miracum/labor-labvisualizer")
 ```
 
 # Configuration 

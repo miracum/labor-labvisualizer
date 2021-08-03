@@ -40,7 +40,7 @@ my_desc$set_authors(
 # Remove some author fields
 my_desc$del("Maintainer")
 # Set the version
-my_desc$set_version("0.0.3")
+my_desc$set_version("0.0.3.9001")
 # The title of your package
 my_desc$set(Title = paste(
   "labVisualizeR - an interactive web application to",

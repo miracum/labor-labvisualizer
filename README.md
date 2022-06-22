@@ -5,8 +5,6 @@
 [![linting](https://github.com/miracum/labor-labvisualizer/workflows/lint/badge.svg?branch=master)](https://github.com/miracum/labor-labvisualizer/actions)
 [![test-coverage](https://github.com/miracum/labor-labvisualizer/workflows/test-coverage/badge.svg?branch=master)](https://github.com/miracum/labor-labvisualizer/actions)
 [![codecov](https://codecov.io/gh/miracum/labor-labvisualizer/branch/master/graph/badge.svg)](https://codecov.io/gh/miracum/labor-labvisualizer)
-[![pipeline status](https://gitlab.miracum.org/miracum/labor/labvisualizer/badges/master/pipeline.svg)](https://gitlab.miracum.org/miracum/labor/labvisualizer/commits/master)
-[![coverage report](https://gitlab.miracum.org/miracum/labor/labvisualizer/badges/master/coverage.svg)](https://gitlab.miracum.org/miracum/labor/labvisualizer/commits/master)
 <!-- badges: end -->
 
 

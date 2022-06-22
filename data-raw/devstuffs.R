@@ -40,7 +40,7 @@ my_desc$set_authors(
 # Remove some author fields
 my_desc$del("Maintainer")
 # Set the version
-my_desc$set_version("0.0.3.9001")
+my_desc$set_version("0.0.3.9002")
 # The title of your package
 my_desc$set(Title = paste(
   "labVisualizeR - an interactive web application to",
@@ -88,7 +88,6 @@ usethis::use_package("data.table", type="Imports")
 usethis::use_package("utils", type="Imports")
 usethis::use_package("shiny", type="Imports")
 usethis::use_package("shinydashboard", type="Imports")
-usethis::use_package("shinyjs", type="Imports")
 usethis::use_package("DBI", type = "Imports")
 usethis::use_package("stats", type = "Imports")
 usethis::use_package("graphics", type = "Imports")
@@ -96,6 +95,7 @@ usethis::use_package("DT", type = "Imports")
 usethis::use_package("e1071", type = "Imports")
 usethis::use_package("ggplot2", type = "Imports")
 usethis::use_package("magrittr", type = "Imports")
+usethis::use_package("DIZtools", type = "Imports")
 usethis::use_package("DIZutils", type = "Imports")
 
 # we need the development package of DIZutils due to yet old function logic on v0.0.3 CRAN package

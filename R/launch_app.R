@@ -23,19 +23,19 @@ launch_app <- function(
   lib_path
 ) {
 
-  DIZutils::global_env_hack(
+  DIZtools::assign_to_R_env(
     "utils_path",
     utils_path,
     1L
   )
 
-  DIZutils::global_env_hack(
+  DIZtools::assign_to_R_env(
     "lib_path",
     lib_path,
     1L
   )
 
-  DIZutils::global_env_hack(
+  DIZtools::assign_to_R_env(
     "db_name",
     db_name,
     1L

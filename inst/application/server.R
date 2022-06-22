@@ -112,7 +112,7 @@ shiny::shinyServer(function(input, output, session) {
             msg <- paste(
                 "Removed tab 'visualize'"
             )
-            DIZutils::feedback(
+            DIZtools::feedback(
                 print_this = msg,
                 type = "Info",
                 logjs = TRUE,
@@ -196,7 +196,7 @@ shiny::shinyServer(function(input, output, session) {
         # if all sexes, reset subset to db_data
         if (rv$gender_present == "ALL") {
             msg <- "Gender = ALL"
-            DIZutils::feedback(
+            DIZtools::feedback(
                 print_this = msg,
                 logjs = TRUE,
                 headless = FALSE
@@ -206,7 +206,7 @@ shiny::shinyServer(function(input, output, session) {
             # else: select subset based on radiobutton value
         } else if (rv$gender_present %in% c("W", "M")) {
             msg <- paste("Gender =", rv$gender_present)
-            DIZutils::feedback(
+            DIZtools::feedback(
                 print_this = msg,
                 logjs = TRUE,
                 headless = FALSE
@@ -218,7 +218,7 @@ shiny::shinyServer(function(input, output, session) {
         } else if (rv$gender_present == "U") {
             if (rv$db_data[get("SEX") %notin% c("W", "M", NA), .N] < 5) {
                 msg <- paste("Gender = U not present")
-                DIZutils::feedback(
+                DIZtools::feedback(
                     print_this = msg,
                     type = "Warning",
                     logjs = TRUE,
@@ -243,7 +243,7 @@ shiny::shinyServer(function(input, output, session) {
         } else if (rv$gender_present == "NA") {
             if (rv$db_data[is.na(get("SEX")), .N] < 5) {
                 msg <- paste("Gender =NA not present")
-                DIZutils::feedback(
+                DIZtools::feedback(
                     print_this = msg,
                     type = "Warning",
                     logjs = TRUE,
@@ -439,7 +439,7 @@ shiny::shinyServer(function(input, output, session) {
                 "rangeSlider value:",
                 input$rangeSlider
             )
-            DIZutils::feedback(
+            DIZtools::feedback(
                 print_this = msg,
                 type = "Info",
                 logjs = TRUE,
@@ -465,7 +465,7 @@ shiny::shinyServer(function(input, output, session) {
                 "ageSlider value:",
                 input$ageSlider
             )
-            DIZutils::feedback(
+            DIZtools::feedback(
                 print_this = msg,
                 type = "Info",
                 logjs = TRUE,
@@ -481,7 +481,7 @@ shiny::shinyServer(function(input, output, session) {
             "sexRadio value:",
             input$gender
         )
-        DIZutils::feedback(
+        DIZtools::feedback(
             print_this = msg,
             type = "Info",
             logjs = TRUE,
@@ -546,7 +546,7 @@ shiny::shinyServer(function(input, output, session) {
             "N:",
             rv$db_data_subset_present[, .N]
         )
-        DIZutils::feedback(
+        DIZtools::feedback(
             print_this = msg,
             type = "Info",
             logjs = TRUE,

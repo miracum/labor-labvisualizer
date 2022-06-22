@@ -25,7 +25,7 @@ module_visualize_server <- function(input,
         rv$query_var <- gsub("^\\?", "", query_var)
 
         msg <- paste("Query variable:", query_var)
-        DIZutils::feedback(
+        DIZtools::feedback(
           print_this = msg,
           logjs = TRUE,
           headless = rv$headless
@@ -70,7 +70,7 @@ module_visualize_server <- function(input,
           "First call of app;",
           "rv$db_metadata not present --> fire SQL statment"
         )
-        DIZutils::feedback(
+        DIZtools::feedback(
           print_this = msg,
           logjs = TRUE,
           headless = rv$headless
@@ -102,7 +102,7 @@ module_visualize_server <- function(input,
           "First call of app;",
           "rv$db_data not present --> fire SQL statment"
         )
-        DIZutils::feedback(
+        DIZtools::feedback(
           print_this = msg,
           logjs = TRUE,
           headless = rv$headless
@@ -142,7 +142,7 @@ module_visualize_server <- function(input,
         msg <- paste(
           "Got no data --> exit"
         )
-        DIZutils::feedback(
+        DIZtools::feedback(
           print_this = msg,
           type = "Warning",
           logjs = TRUE,
@@ -182,7 +182,7 @@ module_visualize_server <- function(input,
         msg <- paste(
           "Variable type:", variable_type
         )
-        DIZutils::feedback(
+        DIZtools::feedback(
           print_this = msg,
           type = "Info",
           logjs = TRUE,
@@ -192,7 +192,7 @@ module_visualize_server <- function(input,
           msg <- paste(
             "Got categorical data"
           )
-          DIZutils::feedback(
+          DIZtools::feedback(
             print_this = msg,
             type = "Info",
             logjs = TRUE,
@@ -204,7 +204,7 @@ module_visualize_server <- function(input,
           msg <- paste(
             "Got numerical data"
           )
-          DIZutils::feedback(
+          DIZtools::feedback(
             print_this = msg,
             type = "Info",
             logjs = TRUE,
@@ -242,7 +242,7 @@ module_visualize_server <- function(input,
       msg <- paste(
         "Disconnect DB"
       )
-      DIZutils::feedback(
+      DIZtools::feedback(
         print_this = msg,
         type = "Info",
         logjs = TRUE,
@@ -262,7 +262,7 @@ module_visualize_server <- function(input,
       "Outlier Switch status:",
       input$outswitch
     )
-    DIZutils::feedback(
+    DIZtools::feedback(
       print_this = msg,
       type = "Info",
       logjs = TRUE,

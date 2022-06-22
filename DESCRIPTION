@@ -1,20 +1,14 @@
 Package: labVisualizeR
 Title: labVisualizeR - an interactive web application to visualize
     measurements from SQL databases
-Version: 0.0.3.9001
-Authors@R: 
-    c(person(given = "Lorenz A.",
-             family = "Kapsner",
-             role = c("cre", "aut"),
-             email = "lorenz.kapsner@uk-erlangen.de",
-             comment = c(ORCID = "0000-0003-1866-860X")),
-      person(given = "Jakob",
-             family = "Zierk",
-             role = "ctb"),
-      person(given = "MIRACUM - Medical Informatics in Research and Care in University Medicine",
-             role = "fnd"),
-      person(given = "Universitätsklinikum Erlangen",
-             role = "cph"))
+Version: 0.0.3.9002
+Authors@R: c(
+    person("Lorenz A.", "Kapsner", , "lorenz.kapsner@uk-erlangen.de", role = c("cre", "aut"),
+           comment = c(ORCID = "0000-0003-1866-860X")),
+    person("Jakob", "Zierk", role = "ctb"),
+    person("MIRACUM - Medical Informatics in Research and Care in University Medicine", role = "fnd"),
+    person("Universitätsklinikum Erlangen", role = "cph")
+  )
 Description: The R tool 'labVisualizeR' provides a shiny web application
     that aims to interactively visualize measurements from SQL databases.
     It has primarily been developed to visualize laboratory mesaurements,
@@ -26,6 +20,7 @@ BugReports: https://github.com/miracum/labor-labvisualizer/issues
 Imports: 
     data.table,
     DBI,
+    DIZtools,
     DIZutils,
     DT,
     e1071,
@@ -34,7 +29,6 @@ Imports:
     magrittr,
     shiny,
     shinydashboard,
-    shinyjs,
     stats,
     utils
 Suggests: 
@@ -42,7 +36,8 @@ Suggests:
     lintr,
     processx,
     testthat
-Date/Publication: 2021-08-03 18:13:10 UTC
+Remotes: 
+    github::miracum/misc-dizutils@development
+Date/Publication: 2022-06-22 11:10:10 UTC
 Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.0

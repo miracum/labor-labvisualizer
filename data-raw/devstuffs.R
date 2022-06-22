@@ -1,3 +1,4 @@
+# nolint start
 packagename <- "labVisualizeR"
 
 person1 <- person(
@@ -163,3 +164,4 @@ usethis::use_git_ignore("!/.lintr")
 
 # tidy description
 usethis::use_tidy_description()
+# nolint end

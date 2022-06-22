@@ -53,7 +53,7 @@ shiny::shinyServer(function(input, output, session) {
         if (!is.null(rv$db_data)) {
             if (abs(
                 e1071::skewness(
-                    rv$db_data[, get("VALUE_NUM")], na.rm = T
+                    rv$db_data[, get("VALUE_NUM")], na.rm = TRUE
                 )
             ) > 30) {
                 rv$outlier_default <- TRUE
@@ -78,7 +78,7 @@ shiny::shinyServer(function(input, output, session) {
         if (!is.null(rv$db_data)) {
             if (abs(
                 e1071::skewness(
-                    rv$db_data[, get("VALUE_NUM")], na.rm = T
+                    rv$db_data[, get("VALUE_NUM")], na.rm = TRUE
                 )
             ) > 30) {
                 rv$outlier_default <- TRUE
@@ -305,10 +305,10 @@ shiny::shinyServer(function(input, output, session) {
                 ))
             }
             rv$min <- round(
-                min(rv$db_data_subset[, get("VALUE_NUM")], na.rm = T), 2
+                min(rv$db_data_subset[, get("VALUE_NUM")], na.rm = TRUE), 2
             )
             rv$max <- round(
-                max(rv$db_data_subset[, get("VALUE_NUM")], na.rm = T), 2
+                max(rv$db_data_subset[, get("VALUE_NUM")], na.rm = TRUE), 2
             )
 
             updateSliderInput(
@@ -320,10 +320,10 @@ shiny::shinyServer(function(input, output, session) {
 
         # always update age slider
         rv$min_age <- round(
-            min(rv$db_data_subset[, get("AGE")], na.rm = T), 2
+            min(rv$db_data_subset[, get("AGE")], na.rm = TRUE), 2
         )
         rv$max_age <- round(
-            max(rv$db_data_subset[, get("AGE")], na.rm = T), 2
+            max(rv$db_data_subset[, get("AGE")], na.rm = TRUE), 2
         )
 
         # always update age slider

@@ -170,7 +170,7 @@ module_visualize_server <- function(input,
         rv$db_data_subset <- rv$db_data
         skew <- e1071::skewness(
           rv$db_data_subset[!is.na(get("VALUE_NUM")), get("VALUE_NUM")],
-          na.rm = T
+          na.rm = TRUE
         )
         print(skew)
         if (is.na(skew) ||
@@ -214,14 +214,14 @@ module_visualize_server <- function(input,
           # the range to be displayed in the graphs and
           # summary statistic
           ## set min/max first here
-          rv$min <- round(min(rv$db_data[, get("VALUE_NUM")], na.rm = T), 2)
-          rv$max <- round(max(rv$db_data[, get("VALUE_NUM")], na.rm = T), 2)
+          rv$min <- round(min(rv$db_data[, get("VALUE_NUM")], na.rm = TRUE), 2)
+          rv$max <- round(max(rv$db_data[, get("VALUE_NUM")], na.rm = TRUE), 2)
           if (abs(
             e1071::skewness(
-              rv$db_data[, get("VALUE_NUM")], na.rm = T
+              rv$db_data[, get("VALUE_NUM")], na.rm = TRUE
             )
           ) > 30) {
-            rv$outlier_default <- T
+            rv$outlier_default <- TRUE
           }
           # at the end, set db_got_num TRUE to tell other functions
           # that we got numerical data
@@ -232,8 +232,8 @@ module_visualize_server <- function(input,
         # adjust data to be displayed in visualisations and statistics
         # ageSlider
         ## set min/max first here
-        rv$min_age <- round(min(rv$db_data[, get("AGE")], na.rm = T), 2)
-        rv$max_age <- round(max(rv$db_data[, get("AGE")], na.rm = T), 2)
+        rv$min_age <- round(min(rv$db_data[, get("AGE")], na.rm = TRUE), 2)
+        rv$max_age <- round(max(rv$db_data[, get("AGE")], na.rm = TRUE), 2)
       }
     }
 
@@ -292,8 +292,8 @@ module_visualize_server <- function(input,
             "Error creating bins: using Sturges algorithm."
           )
           showModal(modalDialog(
-            paste(
-              "Found too few data points"
+            paste(msg,
+              ". Found too few data points."
             ),
             title = "Too few data points",
             footer = actionButton("dismiss_and_reset", "OK")

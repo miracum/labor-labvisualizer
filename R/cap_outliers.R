@@ -12,14 +12,14 @@ cap_outliers <- function(vector) {
   q <- stats::quantile(
     vector,
     probs = c(.25, .75),
-    na.rm = T,
-    names = F
+    na.rm = TRUE,
+    names = FALSE
   )
 
   # IQR
   i <- stats::IQR(
     vector,
-    na.rm = T
+    na.rm = TRUE
   )
 
   # OutLo: < Q25-1.5*IQR

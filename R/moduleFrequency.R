@@ -28,7 +28,7 @@ module_frequency_server <- function(input,
           dat <-
             rv$db_data_subset_present[, .N, by = c("VALUE_NUM", "VALUE_TEXT")
             ][
-              order(get("N"), decreasing = T)
+              order(get("N"), decreasing = TRUE)
             ][
               1:20,
             ][
@@ -40,7 +40,7 @@ module_frequency_server <- function(input,
           dat <-
             rv$db_data_subset_present[, .N, by = c("VALUE_NUM", "VALUE_TEXT")
             ][
-              order(get("N"), decreasing = T)
+              order(get("N"), decreasing = TRUE)
             ][
               , "% Valid" := round( # nolint
                 (get("N") / nrow(rv$db_data_subset_present)
@@ -57,7 +57,7 @@ module_frequency_server <- function(input,
       output$freq_table <- DT::renderDataTable({
         dat <- rv$db_data_subset_present[, .N, by = "VALUE_TEXT"
         ][
-          order(get("N"), decreasing = T)
+          order(get("N"), decreasing = TRUE)
         ][
           , "% Valid" := round( # nolint
             (get("N") / nrow(rv$db_data_subset_present)

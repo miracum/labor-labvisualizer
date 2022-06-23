@@ -1,6 +1,7 @@
 # labVisualizeR (!!! under development !!!)
 
 <!-- badges: start -->
+[![](https://img.shields.io/badge/doi-10.3233/SHTI210072-yellow.svg)](https://doi.org/10.3233/SHTI210072)
 [![R CMD Check via {tic}](https://github.com/miracum/labor-labvisualizer/workflows/R%20CMD%20Check%20via%20{tic}/badge.svg?branch=master)](https://github.com/miracum/labor-labvisualizer/actions)
 [![linting](https://github.com/miracum/labor-labvisualizer/workflows/lint/badge.svg?branch=master)](https://github.com/miracum/labor-labvisualizer/actions)
 [![test-coverage](https://github.com/miracum/labor-labvisualizer/workflows/test-coverage/badge.svg?branch=master)](https://github.com/miracum/labor-labvisualizer/actions)
@@ -8,7 +9,7 @@
 <!-- badges: end -->
 
 
-The package includes a shiny web application that aims to interactively visualize measurements from SQL databases. It has primarily been developed to visualize laboratory mesaurements, but can in principal be used to visualize any continuous and discrete values. 
+The package includes a shiny web application that aims to interactively visualize measurements from SQL databases. It has primarily been developed to visualize laboratory measurements, but can in principal be used to visualize any continuous and discrete values. 
 
 Currently supported databases:  
 * Oracle (via R package `RJDBC` --> please provide the path to your 'ojdbc7.jar' when starting the application) 

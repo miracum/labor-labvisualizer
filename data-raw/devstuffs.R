@@ -162,6 +162,9 @@ usethis::use_git_ignore("!/.lintr")
 #rcmdcheck::rcmdcheck()
 #rcmdcheck::rcmdcheck(args = "--no-vignettes", build_args = "--no-build-vignettes")
 
+
+badger::badge_doi("10.3233/SHTI210072", color = "yellow")
+
 # tidy description
 usethis::use_tidy_description()
 # nolint end
